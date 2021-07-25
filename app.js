@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 
-const userRoute = require('./routes/userRoutes')
+const userRouter = require('./routes/userRoutes')
 const globalErrorHandler = require('./controllers/errorController')
 
 const app = express()
@@ -19,7 +19,7 @@ app.use(express.json())
 
 
 // ROUTES
-app.use('/api/users', userRoute)
+app.use('/api/users', userRouter)
 
 
 // UNDEFINED ROUTES HANDLER
