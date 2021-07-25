@@ -4,8 +4,8 @@
   "description": "User Authentication: Sign up, log in, reset password and change password.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start:dev": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,16 @@
   "bugs": {
     "url": "https://github.com/Falence/user-authentication-nodejs/issues"
   },
-  "homepage": "https://github.com/Falence/user-authentication-nodejs#readme"
+  "homepage": "https://github.com/Falence/user-authentication-nodejs#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.3",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12",
+    "validator": "^13.6.0"
+  }
 }
