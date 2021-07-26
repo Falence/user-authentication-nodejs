@@ -3,6 +3,7 @@ const morgan = require('morgan')
 
 const userRouter = require('./routes/userRoutes')
 const globalErrorHandler = require('./controllers/errorController')
+const AppError = require('./utils/appError')
 
 const app = express()
 
@@ -23,6 +24,9 @@ app.use('/api/users', userRouter)
 
 
 // UNDEFINED ROUTES HANDLER
+app.all('*', (req, res, next) => {
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404))
+})
 
 
 // GLOBAL ERROR HANDLER
