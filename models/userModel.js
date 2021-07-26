@@ -29,7 +29,12 @@ const userSchema = new mongoose.Schema({
             },
             message: 'Passwords are not the same!'
         }
-    }
+    },
+    role: {
+        type: String,
+        default: 'user'
+    },
+    changedPasswordAt: Date
 })
 
 // Encrypt password
@@ -45,6 +50,16 @@ userSchema.pre('save', async function(next) {
 userSchema.methods.correctPassword = async function(candidatePassword, password) {
     return await bcrypt.compare(candidatePassword, password)
 }
+
+userSchema.methods.changedPasswordAfter = function(tokenTimeStamp) {
+    if (this.changedPasswordAt) {
+        const passwordChangeTime = parseInt(this.changedPasswordAt.getTime()) / 1000
+        return passwordChangeTime > tokenTimeStamp
+    }  
+    
+    return false
+}
+
 
 const User = mongoose.model('User', userSchema)
 
