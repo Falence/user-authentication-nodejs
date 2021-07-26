@@ -81,7 +81,15 @@ exports.protect = catchAsync(async (req, res, next) => {
     next()
 })
 
-exports.restrictTo = (req, res, next) => {}
+exports.restrictTo = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)) {
+            return next(new AppError(`This resource is protected! You don't have access permissions!`, 403))
+        }
+
+        next()
+    }
+}
 
 exports.forgotPassword = (req, res, next) => {}
 
