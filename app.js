@@ -18,7 +18,6 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json())
 
 
-
 // ROUTES
 app.use('/api/users', userRouter)
 
