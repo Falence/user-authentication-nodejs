@@ -100,7 +100,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     }
 
     // check if user with that email exists
-    const user = User.findOne({ email: req.body.email })
+    const user = await User.findOne({ email: req.body.email })
     if (!user) {
         return next(new AppError('No user exists with this email!', 401))
     }
